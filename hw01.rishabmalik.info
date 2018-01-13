@@ -1,0 +1,10 @@
+server{
+	listen 80;
+	listen [::]:80;
+	root /home/rish/www/hw01.rishabmalik.info;
+	index index.html;
+	server_name hw01.rishabmalik.info;
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}
