@@ -146,8 +146,13 @@ defmodule Calc do
 
   def eval(x,y,:div) do
     {x,_} = Integer.parse(x)
-    {y,_} = Integer.parse(y)  
-    Integer.floor_div(x,y)
+    {y,_} = Integer.parse(y)
+    if(y == 0) do
+      raise "You are trying to divide by zero"
+    else
+      Integer.floor_div(x,y)
+    end  
+   
   end
 
   def eval(expression) do
@@ -163,7 +168,9 @@ defmodule Calc do
    
 
   end
-
+  # reads input from user
+  # input can only be a artithmetic expression containing + , -,*,/,()
+  # cannot handle negative numbers properly for eg -10-1 will return -9 instead of -11
   def main() do
     
     IO.gets("")
