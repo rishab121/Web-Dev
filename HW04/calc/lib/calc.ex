@@ -4,15 +4,9 @@ defmodule Calc do
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Calc.hello
-      :world
 
   """
-
+  #;; Atrribution for regex = www.stackoverflow.com, www.regex101.com
   #;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   def managediv(expression) do
     divexpression = Regex.run(~r/\d+\/\d+/,expression) 
@@ -79,8 +73,13 @@ defmodule Calc do
     second_number = hd tl subexpression
     answer = Integer.to_string(eval(first_number,second_number,:sub))
     expression = Regex.replace(~r/\d+\-\d+/,expression,answer,global: false)
-    expression
-
+    solvingminuses = Regex.run(~r/\d+\+\-\d+/,expression) #handle +-
+    if solvingminuses != nil do
+      Regex.replace(~r/\+\-/,expression,"-")
+      |> managesub()
+    else
+      expression
+    end
   end
   #;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -154,13 +153,20 @@ defmodule Calc do
   def eval(expression) do
     expression = Regex.replace(~r/\s/,expression,"") #remove spaces
     expression = managebraces(expression) |> managediv() |> managemul() |> managesub() |> manageadd()
-    expression
+    solvingminuses = Regex.run(~r/\d+\+\-\d+/,expression) #handle +-
+    if solvingminuses != nil do
+      Regex.replace(~r/\+\-/,expression,"-")
+      |> managesub()
+    else
+      expression
+    end 
+   
 
   end
 
   def main() do
     
-    expression = IO.gets("")
+    IO.gets("")
     |> String.trim()
     |> eval()
     |> IO.puts()
