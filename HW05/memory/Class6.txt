@@ -1,0 +1,175 @@
+Stuff on screen:
+-incomplete world
+- #guesses left
+-incorrect gueses
+
+Applcation state:
+-secret state
+-no of gueses left
+-set of guessed letters
+
+Known constatns:
+-initial no of guesses
+
+getbootstrap - > layout, utilites?(widt)
+
+hangman -> assets-> js
+rmtodo.jsx
+
+
+
+import React from 'react';
+from reactdom from 'react-dom';
+
+exort defaullt function game_init(root){
+	ReactDOM.render(<Hangman />, root);
+}
+
+class HanngmanGae extends React.Component{
+
+	constructor(props){
+		super(props);
+		this.state={
+			secret_word: "development", //props.word
+			guesses: new Set(), //set of letters
+			//set has .add .has .delete
+		};
+	}
+
+	setGuess(text){
+		let state1 = {
+			secret_word : this.sate.secre_word;
+			guesses: new Set(text.split(""));
+		};
+		this.setState(state1);
+	}
+
+	render(){
+		return (
+		<div className="containeer">
+			<div className="row">
+				<GUessedWord state={this}/>
+				<GuessesLeft state={this}/>
+			</div>
+			<div classNmae="row">
+				<div className = "col-md-6">
+					<p><b> Bad-guesses </b></p>
+				</div>
+				<div className = "col-md-6">
+					<p><b> Input</b></p>
+				</div>
+			</div>
+		</div>);
+	}
+
+	function GuessedWorde(props){
+		let state = props.state;
+
+		let word = state.secret_word.split("");
+		let word = _.map(letter)  ??
+
+		return(
+			<div className="col-md-6">
+				<p><b> Guessed word</b></p>
+				<p> {word.join"_"} </p>
+			</div>);
+	}
+
+	fucntions GuessesLeft(props){
+		let state = props.state;
+		let start_games = 7;
+		let word_set = new Set(state.secret_word);
+		state.guesses.forEach((guess) => {
+			if(!word.set.has(guess)){
+				guesses_left-=1;
+			}
+		});
+		let guesses_left = start_guesse
+		retunn(
+			<div className = "col-md-6">
+					<p><b> Guesses left </b></p>
+				</div>);
+	}
+
+	function InputBox(props){
+		let root = props.root;
+		function key(ev){
+			root.setGuess($(ev.target).val());
+		}
+		return(
+			<div className = "col-md-6">
+					<p><b> Input</b></p>
+					<p><inputvtype="text" onChange={key} /> </p>
+				</div>
+			);
+	}
+}
+
+
+
+
+bin/hangman stop ok
+adduser hangman2
+
+ervy app - new user
+so separates everything.
+no conflicts
+better security
+
+
+sudo su - hangan2
+ls
+tar hangman2
+
+scp hangman2
+
+unpack in hanngman2 user ka dir
+cd - nginx
+sites avail
+
+location proxy pass?
+retsart nginx
+
+
+in hangman2
+vin mix.exs
+
+defp deps
+{:distillery, "~->1.5", runtime}
+
+mix deps.get
+
+mix release.init
+vim config/prod.exs
+
+config:
+server:true
+#import_config "prod.secret.exs"
+
+config :hangman, HangmanEb.Endpoint,
+	secret_key_base: "THIS+IS+NOT+SECURE+FIXME+MUST+BE+LONG"
+
+mix deps.get
+cd assests
+npm install
+node _modules/brunch/bin/brunch b -p
+cd ..
+mix phx.digest
+ls priv/static
+ls /priv/static/js
+MIX_ENV =prod mix release --env=prod
+
+PORT=blah - foreground
+use start 
+it runs as daemon
+
+crontab -e
+2
+@reboot/home/hangma2/start.sh
+
+start.sh
+#!
+
+chmod a+x
+chmod a+x start.sh
+./start.sh
