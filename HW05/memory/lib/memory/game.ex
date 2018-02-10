@@ -35,7 +35,6 @@ defmodule Memory.Game do
         secondflag = false
     
         if(Enum.at(squares,i) == nil) do
-            IO.puts("yaha pe hai bhadva")
           clicks = clicks + 1;
           if(!turnofa) do
             squares = List.replace_at(squares,i,<< hd Enum.at(squaresvalue,i) >>)
@@ -104,7 +103,7 @@ defmodule Memory.Game do
         if(j<16) do
             if(j != i)do
                 if(getValue(squares,j) == getValue(squares,i) && !getValue(squaresscored,j)) do
-                    IO.puts("inside")
+                   # IO.puts("inside")
                     flag = true
                     squaresscored =  replaceValue(squaresscored,i,true)
                     #IO.puts(getValue(squaresscored,i))
