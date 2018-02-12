@@ -162,5 +162,16 @@ defmodule Memory.Game do
         end
         
     end
-    
+    def handlerestart(game) do
+        %{
+            squares: [nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil,nil],
+            squaresscored: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
+            score: 0,
+            turnofa: false,
+            clicks: 0,
+            flag: false,
+            secondflag: false
+        }
+
+    end
 end
