@@ -1,4 +1,4 @@
-# Memory
+# Memory-Game in Elixir
 
 ## Development Instructions
 
