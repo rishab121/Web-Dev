@@ -1,4 +1,4 @@
-# Calc
+# Calculator in Elixir using Regex
 
 **TODO: Add description**
 
