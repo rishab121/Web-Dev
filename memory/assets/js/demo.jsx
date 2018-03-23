@@ -19,6 +19,14 @@ class Memory extends React.Component{
     this.channel.join()
     .receive("ok", this.gotView.bind(this))
     .receive("error", resp => { console.log("Unable to join", resp); });
+    this.channel.on("update:shit", ({game: game}) => {
+      //this.setState(game.game);
+      console.log("yaha pata nahi");
+      console.log(game);
+      this.setState(game);
+  
+    });
+   
     this.state = {
       squares: [],
       squaresscored: [],
@@ -40,10 +48,17 @@ class Memory extends React.Component{
     },500); 
 
   }
+  
+  
   timeoutView(view){
     //console.log("Timeout view");
    // console.log(view.game);
     this.setState(view.game);
+  }
+  timeoutView2(view){
+    //console.log("Timeout view");
+   // console.log(view.game);
+    this.setState(view);
   }
   handleClickByServer(i){
     //console.log("yaha aaay");

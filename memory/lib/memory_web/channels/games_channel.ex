@@ -32,6 +32,9 @@ defmodule MemoryWeb.GamesChannel do
     game1 = Game.handleClickByServer(game0,num)
     Memory.GameBackup.save(socket.assigns[:name], game1)
     socket = assign(socket, :game, game1)
+    #broadcast! socket, "user:joined", %{game: game1}
+    IO.puts("in handle in click")
+    send(self, {:after_click} )
     {:reply, {:ok, %{"game" => Game.client_view(game1)}}, socket}
   end
   def handle_in("handleTimeOut", %{"game" => game}, socket) do
@@ -53,5 +56,13 @@ defmodule MemoryWeb.GamesChannel do
   defp authorized?(_payload) do
     true
   end
+  def handle_info({:after_click}, socket) do
+    game = socket.assigns[:game]
+    #Memory.GameBackup.save(socket.assigns[:name], game)
+    IO.puts("click func")
+    broadcast socket, "update:shit", %{game: game}
+    {:noreply, socket}
+  end
+  
 
 end

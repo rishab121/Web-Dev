@@ -29,7 +29,14 @@ function init() {
   }
   
   let channel = socket.channel("games:" + gameName, {});
+  
   run_demo(root,channel);
+}
+function handleChange(){
+
+  this.channel.on("update:shit", ({game: game}) => {
+    this.setState(game.game);
+  });
 }
 
 // Use jQuery to delay until page loaded.
